@@ -1,18 +1,11 @@
 {
   "books": [
     {
-      "title": "f",
-      "summary": "f",
-      "pages": "f",
-      "read": "false",
-      "id": 2
-    },
-    {
       "title": "test2",
       "summary": "test2",
-      "pages": "p. test2",
+      "pages": "10000",
       "read": "false",
-      "id": 3
+      "id": 1
     }
   ]
 }

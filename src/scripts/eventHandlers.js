@@ -75,7 +75,6 @@ $("#container").change(event => {
 
 //listens for click on title and builds a form to edit
 $("#container").click(event => {
-    console.log(event.target.children)
     if (event.target.className === "book-title-heading" && event.target.children.length === 0) {
         const editTitleInput = $("<input>")
             .attr("id", "edit-title-input")
@@ -91,7 +90,7 @@ $("#container").click(event => {
 
         const editPagesInput = $("<input>")
             .attr("id", "edit-pages-input")
-            .attr("value", event.target.nextSibling.nextSibling.textContent)
+            .attr("value", "p.")
             .addClass("input")
             .appendTo(event.target.nextSibling.nextSibling)
 
