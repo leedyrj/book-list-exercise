@@ -3,6 +3,7 @@
 const $ = require("jquery")
 
 const apiController = Object.create({}, {
+    //function to add new book
     addNewBook: {
         value: function (title, summary, pages) {
             return $.ajax({
@@ -17,11 +18,13 @@ const apiController = Object.create({}, {
             })
         }
     },
+    //function to get entire list of books currently in database
     getBookList: {
         value: function () {
             return $.ajax("http://localhost:3000/books")
         }
     },
+    //function to change if a book has been read when checkbox is clicked
     readBook: {
         value: function (editedId) {
             return $.ajax({
@@ -33,6 +36,7 @@ const apiController = Object.create({}, {
             })
         }
     },
+    //funtion to edit book and replace current values with new
     editBook: {
         value: function (editId, title, summary, pages) {
             return $.ajax({
@@ -46,6 +50,7 @@ const apiController = Object.create({}, {
             });
         }
     },
+    //function to delete a book from the database
     deleteBook: {
         value: function (id) {
             return $.ajax({

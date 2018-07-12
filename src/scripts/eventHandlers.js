@@ -60,6 +60,7 @@ saveBookButton.click(() => {
     domBuilder.printer()
 })
 
+//event listener listens for change on checkbox. if checked, changes read to true
 $("#container").change(event => {
     if (event.target.className === "checkbox") {
         apiController.readBook(event.target.parentNode.id)
@@ -72,31 +73,31 @@ $("#container").change(event => {
     }
 })
 
+//listens for click on title and builds a form to edit
 $("#container").click(event => {
-    if (event.target.className === "book-title-heading") {
-
+    console.log(event.target.children)
+    if (event.target.className === "book-title-heading" && event.target.children.length === 0) {
         const editTitleInput = $("<input>")
             .attr("id", "edit-title-input")
-            // .attr("value", response.title)
+            .attr("value", event.target.textContent)
             .addClass("input")
             .appendTo(event.target)
 
         const editSummaryInput = $("<input>")
             .attr("id", "edit-summary-input")
-            // .attr("value", response.summary)
+            .attr("value", event.target.nextSibling.textContent)
             .addClass("input")
             .appendTo(event.target.nextSibling)
 
         const editPagesInput = $("<input>")
             .attr("id", "edit-pages-input")
-            // .attr("value", response.pages)
+            .attr("value", event.target.nextSibling.nextSibling.textContent)
             .addClass("input")
             .appendTo(event.target.nextSibling.nextSibling)
 
-
+        //listens for enter to be pressed, takes values from above form and calls editBook with them.  clears and rewrites dom
         $(document).unbind("keypress").keypress(function (e) {
             if (e.which === 13) {
-                console.log("enter")
                 editTitle = editTitleInput.val()
                 editSummary = editSummaryInput.val()
                 editPages = editPagesInput.val()
@@ -110,6 +111,7 @@ $("#container").click(event => {
     }
 })
 
+//event listener on delte button.  calls deletebook from api and clears and rewrites dom
 $("#container").click(event => {
     if (event.target.className === "button delete-book-button") {
         apiController.deleteBook(event.target.parentNode.id)

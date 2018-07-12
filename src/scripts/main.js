@@ -3,6 +3,7 @@ console.log("This project is awesome!")
 const $ = require("jquery")
 const domBuilder = require("./domBuilder")
 
+//prints the dom with what is originally in the database
 domBuilder.printer()
 
 
