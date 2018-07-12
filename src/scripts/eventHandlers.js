@@ -61,19 +61,61 @@ saveBookButton.click(() => {
 })
 
 $("#container").change(event => {
-    const boxChecked = $(event.target);
-    if(event.target.className === "checkbox") {
-        console.log("Winner!!")
+    if (event.target.className === "checkbox") {
+        apiController.readBook(event.target.parentNode.id)
+            .then((response) => {
+                if (response.read === "true") {
+                    let clearCard = event.target.parentNode
+                    clearCard.style.display = "none"
+                }
+            })
     }
 })
 
 $("#container").click(event => {
-    if(event.target.className === "button delete-book-button"){
+    if (event.target.className === "book-title-heading") {
+
+        const editTitleInput = $("<input>")
+            .attr("id", "edit-title-input")
+            // .attr("value", response.title)
+            .addClass("input")
+            .appendTo(event.target)
+
+        const editSummaryInput = $("<input>")
+            .attr("id", "edit-summary-input")
+            // .attr("value", response.summary)
+            .addClass("input")
+            .appendTo(event.target.nextSibling)
+
+        const editPagesInput = $("<input>")
+            .attr("id", "edit-pages-input")
+            // .attr("value", response.pages)
+            .addClass("input")
+            .appendTo(event.target.nextSibling.nextSibling)
+
+
+        $(document).keypress(function (e) {
+            if (e.which === 13) {
+                editTitle = editTitleInput.val()
+                editSummary = editSummaryInput.val()
+                editPages = editPagesInput.val()
+                apiController.editBook(event.target.parentNode.id, editTitle, editSummary, editPages)
+                    .then((response) => {
+                        $("#card-container").empty();
+                        domBuilder.printer()
+                    })
+            }
+        });
+    }
+})
+
+$("#container").click(event => {
+    if (event.target.className === "button delete-book-button") {
         apiController.deleteBook(event.target.parentNode.id)
-        .then((response) => {
-            $("#card-container").empty()
-            domBuilder.printer()
-        })
+            .then((response) => {
+                $("#card-container").empty()
+                domBuilder.printer()
+            })
     }
 })
 

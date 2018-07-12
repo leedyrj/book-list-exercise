@@ -3,8 +3,8 @@
 const $ = require("jquery")
 
 const apiController = Object.create({}, {
-    addNewBook:{
-        value: function(title, summary, pages) {
+    addNewBook: {
+        value: function (title, summary, pages) {
             return $.ajax({
                 url: "http://localhost:3000/books",
                 type: "POST",
@@ -18,26 +18,36 @@ const apiController = Object.create({}, {
         }
     },
     getBookList: {
-        value: function() {
+        value: function () {
             return $.ajax("http://localhost:3000/books")
         }
     },
-    editBook:{
-        value: function(editedbook, editId) {
+    readBook: {
+        value: function (editedId) {
             return $.ajax({
-                url: `https://localhost:3000/books/${editId}`,
-                type: "PUT",
+                url: `http://localhost:3000/books/${editedId}`,
+                type: "PATCH",
+                data: {
+                    read: true
+                }
+            })
+        }
+    },
+    editBook: {
+        value: function (editId, title, summary, pages) {
+            return $.ajax({
+                url: `http://localhost:3000/books/${editId}`,
+                type: "PATCH",
                 data: {
                     title: title,
                     summary: summary,
-                    pages: pages,
-                    read: false
+                    pages: pages
                 }
             });
         }
     },
-    deleteBook:{
-        value: function(id) {
+    deleteBook: {
+        value: function (id) {
             return $.ajax({
                 url: `http://localhost:3000/books/${id}`,
                 type: "DELETE"

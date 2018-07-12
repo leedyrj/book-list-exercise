@@ -42,4 +42,4 @@ domBuilder.printer()
 
 // *Given a user wants to remove a previously stored book
 // When the user performs a gesture on the delete affordance
-// Then the book should be deleted
+// Then the book should be deleted: DONE
