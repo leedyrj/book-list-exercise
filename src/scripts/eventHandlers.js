@@ -94,8 +94,9 @@ $("#container").click(event => {
             .appendTo(event.target.nextSibling.nextSibling)
 
 
-        $(document).keypress(function (e) {
+        $(document).unbind("keypress").keypress(function (e) {
             if (e.which === 13) {
+                console.log("enter")
                 editTitle = editTitleInput.val()
                 editSummary = editSummaryInput.val()
                 editPages = editPagesInput.val()

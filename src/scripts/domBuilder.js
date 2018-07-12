@@ -9,8 +9,12 @@ const cardContainer = $("<div>").attr("id", "card-container").appendTo("#contain
 const printDom = Object.create({}, {
     printer: {
         value: function () {
+            cardContainer.empty()
             apiController.getBookList().then((bookList) => {
+                console.log("booklist", bookList)
                 bookList.forEach(books => {
+                    console.log("book", books);
+
                     if (books.read === "false") {
                         const bookCard = $(`<div id=${books.id}>`)
                         const bookTitle = $("<h2>").text(books.title).addClass("book-title-heading")
